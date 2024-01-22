@@ -11,6 +11,7 @@ You will be prompted to insert an initial 8-puzzle matrix, then the solution tha
 Although you can insert any character or number as your inputs, it is recommended that you use values 1-8 for both puzzles. You also must use the underscore character ('_') in both; it represents your empty tile, which is needed for valued tiles to move and change positions. 
 
 Example:
+
 ![input](https://github.com/SaadHaiderGit/Windy8PuzzleSearch/assets/118562950/1c5964e9-e785-4f57-b2a9-36c3cac70228)
 
 Once your inputs are entered, the system will print out a tree of paths, searching for the shortest route to your output. The system stops once the puzzle reaches the intended solution. If all paths are exhausted and a solution cannot be found, the system will print out a statement informing this.
