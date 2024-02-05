@@ -163,7 +163,7 @@ class EightPuzzle:
             except AttributeError:
                 print('There is no "_" in this matrix, preventing the puzzle from functioning. \nA re-input is required. \n\n')
             except ValueError:
-                print("The start or goal state has a non-blank space not found in the other state. \nYou must re-input both the start and goal state. \n\n")
+                print("The start or goal state has a non-empty space not found in the other state. \nYou must re-input both the start and goal state. \n\n")
                 inputs_given = 0
             except:
                 print("This error shouldn't be appearing. Please inform the maker of this program about it. \nA re-input is required. \n\n")
@@ -172,7 +172,7 @@ class EightPuzzle:
         #All inputs confirmed. Insert the starting node to the frontier, then begin A* search.
         self.frontier.append(first)                                        
         expansion_order_count = 0
-        print("\n\n-----\nSTART\n-----\n\n")
+        print("\n\nSearching for a solution. Please note that this might take a while, depending on your start and goal state.\n")
 
         #Loop until search is complete or failure occurs:
         while True:
@@ -180,24 +180,48 @@ class EightPuzzle:
             cur = self.frontier[0]
             expansion_order_count += 1
 
-            #print the current node state, along with its g(n), h(n), and expansion order count
-            if len(self.explored) > 0:                                    
-                #print("")
-                print("            | ")
-                print("            | ")
-                print("            V \n--------------------------")
-            for i in cur.state:
-                print("        |", end=" ")
-                for j in i:
-                    print(j,end=" ")
-                print("|")
-            print("\n" + ("(g(n) = " + str(cur.gval) + " | h(n) = " + str(cur.hval) + ")").center(24))
-            print (("#" + str(expansion_order_count)).center(25))
-            print("--------------------------")
+            #print the current node state, along with its g(n), h(n), and expansion order count (only for testing and statistics)
+            #if len(self.explored) > 0:                                    
+            #    #print("")
+            #    print("            | ")
+            #    print("            | ")
+            #    print("            V \n--------------------------")
+            #for i in cur.state:
+            #    print("        |", end=" ")
+            #    for j in i:
+            #        print(j,end=" ")
+            #    print("|")
+            #print("\n" + ("(g(n) = " + str(cur.gval) + " | h(n) = " + str(cur.hval) + ")").center(24))
+            #print (("#" + str(expansion_order_count)).center(25))
+            #print("--------------------------")
 
             #If the goal state has been reached, success! Exit the main process.
             if(self.h(cur.state, goal) == 0):            
-                print("\n\n------------\nGOAL REACHED\n------------")
+                print("\nA solution was found! It is printed below, from start to finish.")
+                print("Note: g(n) is the path cost so far, and h(n) is Manhattan distance, or how far all incorrectly placed values are from their proper positions.")
+                print("(They're technical terms for the A* Search algorithm used for calculating the 8-puzzle solution. Don't worry if you don't understand them!)")
+                print("\n--------------------------")
+                solution_list = []
+                while True:
+                    solution_list.insert(0, cur)
+                    if cur.parent is None:
+                        break
+                    cur = cur.parent
+                for s in range(0, len(solution_list)):
+                    if s > 0:                                    
+                        #print("")
+                        print("            | ")
+                        print("            | ")
+                        print("            V \n--------------------------")
+                    for i in solution_list[s].state:
+                        print("        |", end=" ")
+                        for j in i:
+                            print(j,end=" ")
+                        print("|")
+                    print("\n" + ("(g(n) = " + str(solution_list[s].gval) + " | h(n) = " + str(solution_list[s].hval) + ")").center(24))
+                    print (("#" + str(s)).center(25))
+                    print("--------------------------")
+                print("\nThis puzzle takes " + str(len(solution_list) - 1) + " moves to solve.")
                 break
 
             #Create node's children, unless the node already exists in the frontier / explored set
