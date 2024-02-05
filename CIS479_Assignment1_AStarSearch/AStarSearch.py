@@ -237,8 +237,13 @@ class EightPuzzle:
             del self.frontier[0]
             
             if not self.frontier:
-                print("\n\nNo solution found! It appears this puzzle is unsolvable.\n")
+                print("\n\nNo solution found! This puzzle cannot be solved.")
                 break
+            if expansion_order_count > 8000:
+                print("The system is taking too long to find a solution. It appears this puzzle is unsolvable.")
+                break
+            else:
+                print(expansion_order_count)
 
 
 #Program start
