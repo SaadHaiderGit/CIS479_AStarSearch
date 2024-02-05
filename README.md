@@ -12,8 +12,10 @@ Although you can insert any character or number as your inputs, it is recommende
 
 Example:
 
-![input](https://github.com/SaadHaiderGit/Windy8PuzzleSearch/assets/118562950/1c5964e9-e785-4f57-b2a9-36c3cac70228)
+![image](https://github.com/SaadHaiderGit/Windy8PuzzleSearch/assets/118562950/e3a13109-304a-40f0-9258-e518d8563d1a)
+
 
 Once your inputs are entered, the system will print out a tree of paths, searching for the shortest route to your output. The system stops once the puzzle reaches the intended solution. If all paths are exhausted and a solution cannot be found, the system will print out a statement informing this.
 
-![output](https://github.com/SaadHaiderGit/Windy8PuzzleSearch/assets/118562950/428b3f5a-af14-4437-8c9f-ab48c3929313)
+![image](https://github.com/SaadHaiderGit/Windy8PuzzleSearch/assets/118562950/43be4491-56c4-42d6-a3e0-9d3cc5901028)
+
